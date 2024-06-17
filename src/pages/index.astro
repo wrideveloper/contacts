@@ -1,0 +1,66 @@
+---
+import "../styles/global.css";
+import { CONTACTS } from "../data/contact";
+import EmailIcon from "../components/icons/email.astro";
+import GithubIcon from "../components/icons/github.astro";
+import InstagramIcon from "../components/icons/instagram.astro";
+import LinkedinIcon from "../components/icons/linkedin.astro";
+import MediumIcon from "../components/icons/medium.astro";
+import RoadmapIcon from "../components/icons/roadmap.astro";
+import ShortenerIcon from "../components/icons/shortener.astro";
+import WebsiteIcon from "../components/icons/website.astro";
+import YoutubeIcon from "../components/icons/youtube.astro";
+import WhatsappIcon from "../components/icons/whatsapp.astro";
+
+const ICON_MAP = {
+    email: EmailIcon,
+    github: GithubIcon,
+    instagram: InstagramIcon,
+    linkedin: LinkedinIcon,
+    medium: MediumIcon,
+    roadmap: RoadmapIcon,
+    shortener: ShortenerIcon,
+    website: WebsiteIcon,
+    youtube: YoutubeIcon,
+    whatsapp: WhatsappIcon,
+};
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Workshop & Riset Informatika</title>
+    </head>
+    <body>
+        <div class="mx-auto h-full flex flex-col items-center lg:justify-center">
+            <picture>
+                <source srcset="/logo/wri-logo-dark.png" media="(prefers-color-scheme: dark)">
+                <img class="w-80 mb-4 lg:mt-0" src="/logo/wri-logo-light.png" alt="Workshop & Riset Informatika" />
+            </picture>
+            <p class="leading-relaxed max-w-[50ch] text-center text-[#221b00] dark:text-[#ffffff] mb-6 px-4 lg:px-0 text-sm lg:text-lg">
+                Suatu komunitas mahasiswa IT Polinema dengan tujuan membina serta mengembangkan kreativitas mahasiswa di
+                bidang Ilmu Pengetahuan dan Teknologi.
+            </p>
+            <div class="grid grid-cols-2 gap-4 w-full px-4 lg:px-0 lg:w-[26rem] text-sm">
+                {CONTACTS.map((contact) => {
+                    const Icon = ICON_MAP[contact.key.toLowerCase()];
+                    return (
+                        <a
+                            key={contact.key}
+                            href={contact.value}
+                            class={`${contact.full ? 'col-span-2' : 'col-span-1'} hover:-translate-y-0.5 transition-all transform-gpu flex items-center justify-center gap-2 cursor-pointer text-left text-[#221b00] dark:text-[#4b3f00] font-bold hover:text-slate-900 rounded-full py-5 dark:bg-[#f3d334] bg-[#f8e287]`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Icon className="w-6 h-6 inline-block" />
+                            {contact.key}
+                        </a>
+                    )
+                })}
+            </div>
+        </div>
+    </body>
+</html>
