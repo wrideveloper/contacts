@@ -12,7 +12,7 @@ import WebsiteIcon from "../components/icons/website.astro";
 import YoutubeIcon from "../components/icons/youtube.astro";
 import WhatsappIcon from "../components/icons/whatsapp.astro";
 
-const ICON_MAP = {
+const ICON_MAP: Record<string, any> = {
     email: EmailIcon,
     github: GithubIcon,
     instagram: InstagramIcon,
@@ -49,7 +49,6 @@ const ICON_MAP = {
                     const Icon = ICON_MAP[contact.key.toLowerCase()];
                     return (
                         <a
-                            key={contact.key}
                             href={contact.value}
                             class={`${contact.full ? 'col-span-2' : 'col-span-1'} hover:-translate-y-0.5 transition-all transform-gpu flex items-center justify-center gap-2 cursor-pointer text-left text-[#221b00] dark:text-[#4b3f00] font-bold hover:text-slate-900 rounded-full py-5 dark:bg-[#f3d334] bg-[#f8e287]`}
                             target="_blank"
